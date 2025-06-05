@@ -1,0 +1,20 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main # یا هر برنچ دیگری که می‌خواهید پروژه از آن دیپلوی شود (مثلاً master)
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./ # مسیری که فایل‌های پروژه شما در آن قرار دارند (ریشه مخزن)
+          # اگر فایل‌های شما در یک پوشه خاص (مثلاً 'dist' یا 'public') پس از یک فرآیند ساخت قرار می‌گیرند، publish_dir را به آن مسیر تغییر دهید.
